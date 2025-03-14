@@ -9,6 +9,13 @@
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
+.home-icon {
+    color: #007bff;
+    font-size: 50px !important;
+    /* Ensure the icon is large */
+    margin-bottom: 15px;
+}
+
 .home-image {
     width: 100%;
     max-width: 500px;
@@ -46,5 +53,10 @@ p {
 
     p {
         font-size: 16px;
+    }
+
+    .home-icon {
+        font-size: 40px !important;
+        /* Adjust size for smaller screens */
     }
 }

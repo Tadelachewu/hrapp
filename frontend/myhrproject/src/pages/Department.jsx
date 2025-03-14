@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import './Department.css';
+import "./Department.css";
+
 const Department = () => {
   const [departments, setDepartments] = useState([]);
   const [formData, setFormData] = useState({ name: "" });
 
-  // Fetch departments from backend
+  // ✅ Fetch departments from backend
   useEffect(() => {
     fetchDepartments();
   }, []);
@@ -19,10 +20,12 @@ const Department = () => {
     }
   };
 
+  // ✅ Handle form input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // ✅ Add new department
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -34,12 +37,19 @@ const Department = () => {
     }
   };
 
+  // ✅ Delete department
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/departments/${id}`);
+      fetchDepartments(); // Refresh departments list
+    } catch (error) {
+      console.error("Error deleting department", error);
+    }
+  };
+
   return (
     <div className="container">
       <h2>Department Management</h2>
-
-      {/* Error Message */}
-      <div id="error-message"></div>
 
       {/* Add Department Form */}
       <form onSubmit={handleSubmit} className="form">
@@ -60,6 +70,7 @@ const Department = () => {
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -67,6 +78,11 @@ const Department = () => {
             <tr key={department.D_id}>
               <td>{department.D_id}</td>
               <td>{department.D_name}</td>
+              <td>
+                <button className="delete-btn" onClick={() => handleDelete(department.D_id)}>
+                  Delete
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>

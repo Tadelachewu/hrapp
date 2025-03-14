@@ -1,6 +1,6 @@
 import axios from 'axios';
-
 import React, { useEffect, useState } from 'react';
+import styles from './Branches.module.css';
 
 const Branches = () => {
   const [branches, setBranches] = useState([]);
@@ -30,7 +30,7 @@ const Branches = () => {
     setError('');
 
     if (!formData.B_name || !formData.B_location) {
-      setError('Please enter a branch name.');
+      setError('Please enter both branch name and location.');
       return;
     }
 
@@ -45,14 +45,14 @@ const Branches = () => {
   };
 
   return (
-    <div className="branch-container">
+    <div className={styles.branchContainer}>
       <h2>Branch Management</h2>
 
-      {error && <div style={{ color: 'red' }}>{error}</div>}
+      {error && <div className={styles.error}>{error}</div>}
 
       {/* Branch Form */}
       <form onSubmit={handleSubmit}>
-        <label htmlFor='B_name'>branch name</label>
+        <label htmlFor='B_name'>Branch Name</label>
         <input
           type="text"
           name="B_name"
@@ -60,11 +60,11 @@ const Branches = () => {
           value={formData.B_name}
           onChange={handleChange}
         />
-        <label htmlFor='B_location'>branch location</label>
+        <label htmlFor='B_location'>Branch Location</label>
         <input
           type="text"
           name="B_location"
-          placeholder="Branch location"
+          placeholder="Branch Location"
           value={formData.B_location}
           onChange={handleChange}
         />
@@ -77,7 +77,7 @@ const Branches = () => {
           <tr>
             <th>ID</th>
             <th>Branch Name</th>
-            <th>Branch location</th>
+            <th>Branch Location</th>
           </tr>
         </thead>
         <tbody>
