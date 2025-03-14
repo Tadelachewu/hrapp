@@ -1,0 +1,5 @@
+# Ignore backend dependencies and environment files
+node_modules/
+.env
+logs/
+*.log
