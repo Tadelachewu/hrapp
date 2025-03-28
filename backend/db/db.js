@@ -5,11 +5,11 @@ require("dotenv").config();
 const config = {
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    server: process.env.DB_SERVER,
-    database: process.env.DB_DATABASE,
-    port: parseInt(process.env.DB_PORT, 10),
-    options: {
-        encrypt: false,  // Set to true for Azure SQL, false for others
+    server:  process.env.DB_SERVER,
+    database: process.env.DB_DATABASE, // all above are required
+    port: parseInt(process.env.DB_PORT, 10), //optional
+    options: { //optional
+        encrypt: true,  // Set to true for Azure SQL, false for others
         trustServerCertificate: true,  // Change to false if using a trusted certificate
     },
 };
@@ -43,7 +43,7 @@ const closeDB = async () => {
 };
 
 // Handle process termination
-process.on("SIGINT", async () => {
+process.on("SIGINT", async () => {// when ctr+c is pressed
     await closeDB();  // Ensure the connection is closed when app is terminated
     process.exit();
 });

@@ -10,6 +10,13 @@ import Leave from './pages/Leave';
 import NavBar from './pages/NavBar';
 import ProtectedRoute from './pages/ProtectedRoute'; // Protected Route Component
 
+import About from './portfolio/About';
+import Achievements from './portfolio/Achievements';
+import Skills from './portfolio/Skills';
+import Posts from './portfolio/Posts';
+import Bios from './portfolio/Bios';
+import Challenges from './portfolio/Challenges';
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -19,7 +26,16 @@ export const router = createBrowserRouter([
       </AuthProvider>
     ),
     children: [
-      { path: "/", element: <Home /> },
+      { path: "/", element: <Home />,
+        children:[
+          {path:"/about", element:<About />},
+          {path:'/skills', element:<Skills />},
+          {path:'/posts', element:<Posts/>},
+          {path:'/challenges', element:<Challenges />},
+          {path:'/bios', element:<Bios />},
+          {path:"/achievements", element:<Achievements />},
+        ],
+       },
       {
         path: "employees",
         element: (

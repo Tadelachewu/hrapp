@@ -11,7 +11,7 @@ const NavBar = () => {
         <div>
             <nav className="navbar">
                 <ul className="nav-links">
-                    <li><Link to="/" className="nav-link"><Home fontSize="small" /> Home</Link></li>
+                    <li><Link to="/" className="nav-link"><Home fontSize="large" style={{backgroundColor:'rgb(172, 109, 206)', outline:'red'}} /> Home</Link></li>
                     {authenticated ? (
                         <>
                             <li><Link to="/employees" className="nav-link"><People fontSize="small" /> Employees</Link></li>
@@ -25,7 +25,7 @@ const NavBar = () => {
                             </li>
                         </>
                     ) : (
-                        <li><Link to="/login" className="nav-link"><Login fontSize="small" /> Login</Link></li>
+                        <li><Link to="/login" className="nav-link"><Login fontSize="large" /> Login</Link></li>
                     )}
                 </ul>
             </nav>

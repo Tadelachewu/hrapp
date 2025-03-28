@@ -5,6 +5,7 @@ import "./Department.css";
 const Department = () => {
   const [departments, setDepartments] = useState([]);
   const [formData, setFormData] = useState({ name: "" });
+  const [error,setError] = useState(null);
 
   // ✅ Fetch departments from backend
   useEffect(() => {
@@ -40,17 +41,20 @@ const Department = () => {
   // ✅ Delete department
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/departments/${id}`);
-      fetchDepartments(); // Refresh departments list
+      const res=await axios.delete(`http://localhost:5000/departments/${id}`);
+      fetchDepartments();// Refresh departments list
+      setError(null);
     } catch (error) {
       console.error("Error deleting department", error);
+      setError(error);
     }
   };
 
   return (
     <div className="container">
       <h2>Department Management</h2>
-
+       {/* Display error message */}
+      {error && <p className="error-message">{error.message}</p>}
       {/* Add Department Form */}
       <form onSubmit={handleSubmit} className="form">
         <input

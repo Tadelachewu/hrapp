@@ -8,7 +8,8 @@ connectDB().then(dbPool => pool = dbPool);
 // ✅ Get all departments (Uses stored procedure)
 router.get("/", async (req, res) => {
     try {
-        const result = await pool.request().execute("GetDepartments");
+        const result = await pool.request()
+        .execute("GetDepartments");
         res.status(200).json(result.recordset);
     } catch (err) {
         res.status(500).send("Error fetching departments.");
@@ -21,9 +22,10 @@ router.post("/", async (req, res) => {
     try {
         await pool.request()
             .input("name", sql.NVarChar, name)
-            .execute("InsertDepartment");
+            .execute("ADDdep");
         res.status(201).send("Department created successfully.");
     } catch (err) {
+        console.log(err.message);
         res.status(500).send("Error creating department.");
     }
 });
@@ -32,12 +34,14 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     const { id } = req.params;
     try {
+
         await pool.request()
             .input("id", sql.Int, id)
-            .execute("delDept");
+            .execute("DelDepartment");
         res.status(200).send("Department deleted successfully.");
     } catch (err) {
-        res.status(500).send("Error deleting department.");
+        console.log(err.message);
+        res.status(500).send(err.message);
     }
 });
 

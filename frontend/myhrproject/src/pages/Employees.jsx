@@ -113,7 +113,6 @@ const Employees = () => {
     }
   };
 
-
   const resetForm = () => {
     setFormData({
       fname: '',
@@ -192,9 +191,10 @@ const Employees = () => {
           </div>
 
           <div className="form-group">
-            <label>Hire Date:</label>
+            <label htmlFor='date'>Hire Date:</label>
             <input
               type="date"
+              id='date'
               name="hiredate"
               value={formData.hiredate}
               onChange={handleChange}
@@ -203,9 +203,10 @@ const Employees = () => {
           </div>
 
           <div className="form-group">
-            <label>Position:</label>
+            <label htmlFor='pos'>Position:</label>
             <input
               type="text"
+              id='pos'
               name="position"
               value={formData.position}
               onChange={handleChange}
@@ -214,9 +215,10 @@ const Employees = () => {
           </div>
 
           <div className="form-group">
-            <label>Salary:</label>
+            <label htmlFor='sal'>Salary:</label>
             <input
               type="number"
+              id='sal'
               name="salary"
               value={formData.salary}
               onChange={handleChange}
